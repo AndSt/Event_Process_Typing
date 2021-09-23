@@ -1,0 +1,14 @@
+absl-py
+tqdm
+
+torch
+sklearn
+
+numpy
+pandas
+
+nltk==3.4.5
+
+transformers==2.11.0
+allennlp==1.0
+allennlp-models==1.0

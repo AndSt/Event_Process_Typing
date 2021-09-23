@@ -1,0 +1,5 @@
+**/.DS_Store
+
+data/dataset/
+data/full_models/
+**/__pycache__/

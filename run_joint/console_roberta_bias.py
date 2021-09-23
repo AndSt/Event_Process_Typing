@@ -56,7 +56,7 @@ def get_hypernym_path(input_word, max_length=20, return_single_set = True):
 
 
 def main():
-    data_bin, model_bin = '../data/data_subsrl_1sv_1sa_argtrim.bin', './full_model/Roberta_BI/full_model_sptoken_ep121_a1.0_m1-0.1_m2-0.1.bin'
+    data_bin, model_bin = '../data/dataset/data_subsrl_1sv_1sa_argtrim.bin', '../data/full_models/RoBERTa_joint/full_model_sptoken_ep121_a1.0_m1-0.1_m2-0.1.bin'
     data = Data()
     if os.path.exists(data_bin):
         data.load(data_bin)
@@ -64,14 +64,14 @@ def main():
     else:
         data.load_tsv_plain(data_file)
         data.save(data_bin)
-    
+
     data.dump_dataset_format('./dataset_seq.tsv', 'seq')
-    
+
     # W/O n-1 gram
     M = torchpart()
     M.load(model_bin)
     M.serve_verb([' '], data, limit_ids=None, topk=1), M.serve_arg([' '], data, limit_ids=None, topk=1)
-    
+
     sequence = input("Events split by @ (exit() to quit):")
         #verbs, sequences, true_ids, v2s, limit_ids
     while True:
